@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-6">
+    <div style="display: block;">
+    <canvas baseChart width="400" height="400"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+  <div class="col-md-6" style="margin-bottom: 10px">
+    <table class="table table-responsive table-condensed">
+      {{stockName}}
+      <tr>
+        <!--<th *ngFor="let label of lineChartLabels">{{label}}</th>-->
+        <th>Open</th>
+        <th>High</th>
+        <th>Low</th>
+        <th>Close</th>
+        <th>Volume</th>
+      </tr>
+      <tr *ngFor="let d of lineChartData">
+        <!--<td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>-->
+        <td>{{openValue}} </td>
+        <td>{{highValue}} </td>
+        <td>{{lowValue}} </td>
+        <td>{{closeValue}} </td>
+        <td>{{volumeValue}} </td>
+
+      </tr>
+    </table>
+    <button (click)="chartStock()">CLICK</button>
+        <button (click)="randomize()">Randomize</button>
+
+  </div>
+</div>

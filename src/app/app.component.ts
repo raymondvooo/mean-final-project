@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StocksearchService } from './stocksearch.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  
+  constructor(public stock: StocksearchService) {
+  }
 }
