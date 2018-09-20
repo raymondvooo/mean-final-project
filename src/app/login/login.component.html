@@ -1,5 +1,10 @@
-<h1>Logging Component</h1>
+<form clrForm>
 
+  <input clrInput placeholder="email" name="input" [(ngModel)]="user.email" />
+  <input clrInput placeholder="password" name="input" [(ngModel)]="user.password" />
 
+</form>
+<button (click)="onLogin()">Login</button>
+<button (click)="onLogout()">Logout</button>
 
 <button class="btn btn-link" (click)=toRegister() >Need an Account?</button>

@@ -25,7 +25,7 @@ import { LoginComponent } from './login/login.component';
     StocksearchComponent,
     ChartComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

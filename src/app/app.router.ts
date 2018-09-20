@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { StocksearchComponent } from './stocksearch/stocksearch.component';
-import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+
 
 export const router: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: StocksearchComponent },
-    { path: 'register', component: RegisterComponent }
+    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent }
 
 ];
 

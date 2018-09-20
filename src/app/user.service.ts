@@ -7,20 +7,27 @@ export class UserService {
   
   url: string = "http://mean-stack-charlie-2018-raymond-phortonssf.c9users.io:8080/api/appUser";
   returnUrl: string = "home";
+  
   constructor( private http : HttpClient, private router : Router) { }
   
-  register(user){
-    return this.http.post(this.url, user)
+  register(user) {
+    return this.http.post(this.url, user) 
   }
 
-login(){
-    return this.http.post( this.url, { email: "test@gmail.com",password: "1234" })
+  login(user) {
+    return this.http.post( this.url + "/login", user)
+  }
+  
+  logout(user) {
+    let token = window.sessionStorage.getItem( 'token');
+    console.log(token);
+    window.sessionStorage.clear();
+    return this.http.post( this.url + "/logout?access_token="+token, {});
   }
   
   toHomePage(resData){
     //Save data from our succesfull login in sessionStorage
     window.sessionStorage.setItem( "token", resData.token)
-    window.sessionStorage.setItem( "userId", resData.id)
-    // this.router.navigate([this.returnUrl])   
+    window.sessionStorage.setItem( "userId", resData.userId)
   }
 }
