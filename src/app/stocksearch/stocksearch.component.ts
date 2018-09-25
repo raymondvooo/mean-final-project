@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksearchService } from '../stocksearch.service';
+import {UserService} from '../user.service';
+
 
 @Component({
   selector: 'app-stocksearch',
@@ -7,23 +9,42 @@ import { StocksearchService } from '../stocksearch.service';
   styleUrls: ['./stocksearch.component.css']
 })
 export class StocksearchComponent implements OnInit {
-  equity: string = "";
   targetSymbol: string ='';
   targetInfo: string = '';
   currentClose: string = '';
-
-  constructor(private stock: StocksearchService) { }
-
+  stockObj: any = {
+    
+  };
+  name: string = "";
+  favorites: Array<string> = [];
+  
+  constructor(private stock: StocksearchService, private user: UserService) { }
+  
   ngOnInit() {
-
+             this.user.getUser(this.user)
+      .subscribe((data: any) => {
+        this.name = data.firstName;
+        console.log(this.name);
+      });
+         this.user.getFavorites()
+    .subscribe ( (data: any) => {
+      for (var prop in data) {
+      if (data.hasOwnProperty(prop)) {
+        let name = data[prop].stock;
+        this.favorites.push(name);
+    }
+      }
+          console.log("favorites: ", data)
+          console.log(this.favorites);
+    });
+      
   }
   getStock() {
-    this.stock.getData(this.equity)
+    this.stock.getData(this.stockObj.stock)
     .subscribe ( (data:any) => {
       let dayArray: Array<any> = [];
       let dateArray: Array<any> = [];
       console.log(data);
-      console.log(this.equity);
       this.targetSymbol = data[ 'Meta Data']['2. Symbol'];
       this.targetInfo = data['Meta Data']['1. Information'];
       this.currentClose = data['Time Series (Daily)']['2018-09-12']['4. close'];
@@ -37,14 +58,27 @@ export class StocksearchComponent implements OnInit {
       }
       this.stock.dayArray = dayArray;
       this.stock.dateArray = dateArray;
-      this.stock.equity = this.equity;
+      this.stock.equity = this.stockObj.stock;
     }
     console.log(dayArray);
     console.log(dateArray);
     } )
   }
   
+  favoriteStock() {
+    this.user.saveStock(this.stockObj)
+    .subscribe ( (data: any) => {
+      console.log("stock data: ", data)
+    })
+  }
+    getFavorites() {
+    this.user.getFavorites()
+    .subscribe ( (data: any) => {
+      console.log("favorites: ", data)
+    })
+  }
   
+
 
 
 }

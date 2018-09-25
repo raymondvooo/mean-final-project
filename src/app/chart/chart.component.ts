@@ -92,5 +92,7 @@ export class ChartComponent {
   public chartHovered(e:any):void {
     console.log(e);
   }
+  
+  
 }
 

@@ -9,6 +9,10 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
   user: any = {};
+  loginS: boolean = true;
+  login: boolean = true;
+  register: boolean = false;
+  
   
   constructor(public userService : UserService, public router: Router) { }
 
@@ -22,8 +26,14 @@ export class LoginComponent implements OnInit {
       console.log(res);
       this.userService.toHomePage(res)
       this.router.navigate(['home']);  
-    })
+    },
+      err =>{
+        this.loginS  = false;
+      })
+      
   }
+  
+ 
   
   onLogout() {
     this.userService.logout(this.user)
@@ -31,6 +41,15 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.router.navigate(['login']);
       })
+  }
+    onRegister(){
+    console.log(this.user);
+    this.userService.register(this.user)
+    .subscribe(  (res) => {
+      console.log(res);
+      this.userService.toHomePage(res)
+      this.router.navigate(['home']);  
+    })
   }
   
   toRegister(){

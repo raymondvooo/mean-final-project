@@ -1,10 +1,38 @@
-<form clrForm>
 
-  <input clrInput placeholder="email" name="input" [(ngModel)]="user.email" />
-  <input clrInput placeholder="password" name="input" [(ngModel)]="user.password" />
+  
+  <div class="login-wrapper">
+    <form class="login">
+        <section class="title">
+            <h3 class="welcome">Welcome to</h3>
+            Stock Search
+            <h5 class="hint">Sign in below {{user.name}}</h5>
+        </section>
+        <div class="login-group" *ngIf="login == true">
+            <input class="username" type="text" name="input" placeholder="Username" [(ngModel)]="user.email">
+            <input class="password" type="password" name="input" placeholder="Password" [(ngModel)]="user.password">
+ 
+            <div class="error active" *ngIf="loginS === false">
+                Invalid user name or password
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="onLogin()">Login</button>
+            <button (click)="onLogout()">Logout</button>
+            <button (click)="getUser()">user</button>
 
-</form>
-<button (click)="onLogin()">Login</button>
-<button (click)="onLogout()">Logout</button>
 
-<button class="btn btn-link" (click)=toRegister() >Need an Account?</button>
+            <button class="btn btn-link" (click)="register = true; login = false" >Need an Account?</button>
+        </div>
+        
+        <div class="login-group" *ngIf="register == true">
+          REGISTER
+            <input class="first name" type="text" name="input" placeholder="First Name" [(ngModel)]="user.firstName">
+            <input class="last name" type="text" name="input" placeholder="Last Name" [(ngModel)]="user.lastName">
+            <input class="email" type="text" name="input" placeholder="Email" [(ngModel)]="user.email">
+            <input class="password" type="password" name="input" placeholder="Password" [(ngModel)]="user.password">
+ 
+           
+            <button type="submit" class="btn btn-primary" (click)="onRegister()">Register</button>
+
+            <button class="btn btn-link" (click)="register = false; login = true" >Go Back</button>
+        </div>
+    </form>
+</div>

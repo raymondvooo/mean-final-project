@@ -14,7 +14,6 @@ import { routes } from './app.router';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { UserService } from './user.service';
-import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 
 
@@ -24,7 +23,6 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     StocksearchComponent,
     ChartComponent,
-    RegisterComponent,
     LoginComponent,
   ],
   imports: [

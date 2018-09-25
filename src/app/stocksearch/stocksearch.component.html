@@ -1,5 +1,29 @@
-<div id ="header">
-  <input type='text' [(ngModel)] = "equity">
+
+  <div class="main-container">
+    <div class="content-container">
+        <div class="content-area">
+             <app-chart></app-chart>
+        </div>
+        <nav class="sidenav">
+            Welcome {{name}}! <br> 
+            <section class="sidenav-content">
+                <input type='text' placeholder = "search" [(ngModel)] = "stockObj.stock">
   <button (click)="getStock()" >get stock</button>
-  </div>
-  <app-chart></app-chart>
+    <button (click)="favoriteStock()" >save as favorite</button>
+                
+                <section class="nav-group collapsible">
+                    <input id="tabexample1" type="checkbox">
+                    <label for="tabexample1">See Favorites</label>
+                    <ul class="nav-list">
+                        <li let *ngFor = "let fave of favorites"><a class="nav-link">{{fave}}</a></li>
+                        <li><a class="nav-link">Link 2</a></li>
+                    </ul>
+                </section>
+             
+            </section>
+        </nav>
+    </div>
+</div>
+ 
+  
+      <!--<button (click)="getFavorites()" >see favorites</button>-->
