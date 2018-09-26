@@ -1,0 +1,27 @@
+.sidenav {
+    line-height: 1rem;
+    max-width: 13rem;
+    min-width: 9rem;
+    width: 18%;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    background-color: #c4cac4;
+}
+.main-container .content-container .content-area {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem;
+    background-color: #eef5ee;
+}
+
+nav {
+    padding: 6px;
+}
+input {
+    margin: 6px;
+}
+button {
+    margin:2px;
+}

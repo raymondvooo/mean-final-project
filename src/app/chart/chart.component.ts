@@ -9,10 +9,8 @@ import { StocksearchService } from '../stocksearch.service';
 
 export class ChartComponent {
   // lineChart
-  public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
-  ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July', '01', '02', '03'];
+  public lineChartData:Array<any> = [];
+  public lineChartLabels:Array<any> = [];
   public lineChartOptions:any = {
     responsive: true 
   };
@@ -45,7 +43,6 @@ export class ChartComponent {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
   
-  stockArray: Array<any> = [];
   openValue: string = '';
   closeValue: string = '';
   highValue: string = '';
@@ -54,35 +51,27 @@ export class ChartComponent {
   stockName: string = '';
 
   constructor(private stock: StocksearchService) {
-  }
- 
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
-    }
-    this.lineChartData = _lineChartData;
+    this.lineChartData = this.stock.lineChartData;
+    this.lineChartLabels = this.stock.lineChartLabels;
+    this.openValue  = this.stock.openValue;
+    this.closeValue = this.stock.closeValue;
+    this.highValue = this.stock.highValue;
+    this.lowValue = this.stock.lowValue;
+    this.volumeValue = this.stock.volumeValue;
+    this.stockName = this.stock.stockName;
   }
   
-  public chartStock():void {
-    this.lineChartData = [];
-    this.stockArray = this.stock.dayArray;
-    let closingValues = {data: new Array(this.stockArray.length), label: 'Series A'};
-    for (let i = 0; i < this.stockArray.length; i++) {
-      closingValues.data[this.stockArray.length - 1 - i] = this.stockArray[i]['4. close'];
-      this.lineChartLabels[i] = this.stock.dateArray[this.stockArray.length - 1 - i];
-    }
-    this.lineChartData[0] = closingValues;
-    this.openValue = this.stockArray[0]['1. open'];
-    this.highValue = this.stockArray[0]['2. high'];
-    this.lowValue = this.stockArray[0]['3. low'];
-    this.closeValue = this.stockArray[0]['4. close'];
-    this.volumeValue = this.stockArray[0]['5. volume'];
-    this.stockName = this.stock.equity.toUpperCase();
+  chartStock() {
+    this.lineChartData = this.stock.lineChartData;
+    this.lineChartLabels = this.stock.lineChartLabels;
+    this.openValue  = this.stock.openValue;
+    this.closeValue = this.stock.closeValue;
+    this.highValue = this.stock.highValue;
+    this.lowValue = this.stock.lowValue;
+    this.volumeValue = this.stock.volumeValue;
+    this.stockName = this.stock.stockName;
   }
+ 
  
   // events
   public chartClicked(e:any):void {

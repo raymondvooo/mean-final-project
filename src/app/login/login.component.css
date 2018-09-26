@@ -1,0 +1,32 @@
+.login-wrapper {
+    display: flex;
+    background: url(https://is3-ssl.mzstatic.com/image/thumb/Purple128/v4/2b/24/8e/2b248e8f-f488-ace1-b33f-22b407807d61/Free-1x_U007emarketing-0-0-GLES2_U002c0-512MB-sRGB-0-0-0-85-220-0-0-0-7.png/246x0w.jpg);
+    background-size: inherit;
+    background-position: 21rem 0;
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+}
+.login-wrapper .login {
+    background: #fafafa;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    height: auto;
+    min-height: 100vh;
+    width: 21rem;
+    opacity: .95;
+    background-color: #bceae7;
+}
+.btn-primary .btn, .btn.btn-primary {
+    border-color: #4b6c69;
+    background-color: #4b6c69;
+    color: #fff;
+}
+.btn-link .btn, .btn.btn-link {
+    border-color: transparent;
+    background-color: transparent;
+    color: #000000;
+}

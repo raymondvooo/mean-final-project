@@ -25,15 +25,13 @@ export class LoginComponent implements OnInit {
     .subscribe((res) => {
       console.log(res);
       this.userService.toHomePage(res)
-      this.router.navigate(['home']);  
+      this.router.navigate(['stocks']);  
     },
       err =>{
         this.loginS  = false;
       })
       
   }
-  
- 
   
   onLogout() {
     this.userService.logout(this.user)
@@ -48,12 +46,10 @@ export class LoginComponent implements OnInit {
     .subscribe(  (res) => {
       console.log(res);
       this.userService.toHomePage(res)
-      this.router.navigate(['home']);  
+      this.router.navigate(['stocks']);  
     })
   }
   
-  toRegister(){
-    this.router.navigate(['register'])
- }
+
 
 }

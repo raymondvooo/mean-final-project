@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksearchService } from '../stocksearch.service';
 import {UserService} from '../user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,15 +19,15 @@ export class StocksearchComponent implements OnInit {
   name: string = "";
   favorites: Array<string> = [];
   
-  constructor(private stock: StocksearchService, private user: UserService) { }
+  constructor(private stock: StocksearchService, private user: UserService, private router: Router) { }
   
   ngOnInit() {
-             this.user.getUser(this.user)
+    this.user.getUser(this.user)
       .subscribe((data: any) => {
         this.name = data.firstName;
         console.log(this.name);
       });
-         this.user.getFavorites()
+      this.user.getFavorites()
     .subscribe ( (data: any) => {
       for (var prop in data) {
       if (data.hasOwnProperty(prop)) {
@@ -39,8 +40,8 @@ export class StocksearchComponent implements OnInit {
     });
       
   }
-  getStock() {
-    this.stock.getData(this.stockObj.stock)
+  getStock(stock) {
+    this.stock.getData(stock)
     .subscribe ( (data:any) => {
       let dayArray: Array<any> = [];
       let dateArray: Array<any> = [];
@@ -58,7 +59,8 @@ export class StocksearchComponent implements OnInit {
       }
       this.stock.dayArray = dayArray;
       this.stock.dateArray = dateArray;
-      this.stock.equity = this.stockObj.stock;
+      this.stock.equity =  data[ 'Meta Data']['2. Symbol'];
+      this.stock.chartStock();
     }
     console.log(dayArray);
     console.log(dateArray);
@@ -78,7 +80,13 @@ export class StocksearchComponent implements OnInit {
     })
   }
   
-
+    onLogout() {
+      this.user.logout(this.user)
+      .subscribe ( (res) => {
+        console.log(res);
+        this.router.navigate(['login']);
+      })
+  }
 
 
 }
