@@ -4,12 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class UserService {
-  
-  
   url: string = "http://mean-stack-charlie-2018-raymond-phortonssf.c9users.io:8080/api/appUser/";
   returnUrl: string = "home";
  
-  
   constructor( private http : HttpClient, private router : Router) { }
   
   register(user) {
@@ -30,14 +27,12 @@ export class UserService {
   getUser(user) {
     let id = window.sessionStorage.getItem('userId')
     let token = window.sessionStorage.getItem( 'token');
-
     return this.http.get( this.url + id + "/?access_token=" + token, {} )
   }
   
   saveStock(stock) {
     let id = window.sessionStorage.getItem('userId')
     let token = window.sessionStorage.getItem( 'token');
-
     return this.http.post( this.url + id + "/favorites?access_token=" + token, stock )
   }
   

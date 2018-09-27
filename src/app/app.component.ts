@@ -7,7 +7,7 @@ import { StocksearchService } from './stocksearch.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Stock Search';
   
   constructor(public stock: StocksearchService) {
   }

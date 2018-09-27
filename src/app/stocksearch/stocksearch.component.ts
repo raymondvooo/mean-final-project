@@ -10,12 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./stocksearch.component.css']
 })
 export class StocksearchComponent implements OnInit {
-  targetSymbol: string ='';
-  targetInfo: string = '';
-  currentClose: string = '';
-  stockObj: any = {
-    
-  };
+  stockObj: any = {};
   name: string = "";
   favorites: Array<string> = [];
   
@@ -23,11 +18,11 @@ export class StocksearchComponent implements OnInit {
   
   ngOnInit() {
     this.user.getUser(this.user)
-      .subscribe((data: any) => {
-        this.name = data.firstName;
-        console.log(this.name);
-      });
-      this.user.getFavorites()
+    .subscribe((data: any) => {
+      this.name = data.firstName;
+      console.log(this.name);
+    });
+    this.user.getFavorites()
     .subscribe ( (data: any) => {
       for (var prop in data) {
       if (data.hasOwnProperty(prop)) {
@@ -35,9 +30,8 @@ export class StocksearchComponent implements OnInit {
         this.favorites.push(name);
     }
       }
-          console.log("favorites: ", data)
-          console.log(this.favorites);
-    });
+      console.log("favorites: ", data)
+      });
       
   }
   getStock(stock) {
@@ -46,9 +40,7 @@ export class StocksearchComponent implements OnInit {
       let dayArray: Array<any> = [];
       let dateArray: Array<any> = [];
       console.log(data);
-      this.targetSymbol = data[ 'Meta Data']['2. Symbol'];
-      this.targetInfo = data['Meta Data']['1. Information'];
-      this.currentClose = data['Time Series (Daily)']['2018-09-12']['4. close'];
+      this.stock.equity = data[ 'Meta Data']['2. Symbol'];
       console.log('DATA', data['Time Series (Daily)']);
       for (var prop in data['Time Series (Daily)']) {
       if (data['Time Series (Daily)'].hasOwnProperty(prop)) {
@@ -59,21 +51,33 @@ export class StocksearchComponent implements OnInit {
       }
       this.stock.dayArray = dayArray;
       this.stock.dateArray = dateArray;
-      this.stock.equity =  data[ 'Meta Data']['2. Symbol'];
       this.stock.chartStock();
     }
-    console.log(dayArray);
+    console.log(dayArray, "format");
     console.log(dateArray);
     } )
   }
   
   favoriteStock() {
+    let existingStock: boolean = false;
+    for (var i = 0; i < this.favorites.length; i++) {
+      if (this.stockObj.stock === this.favorites[i]) {
+        existingStock = true;
+      }
+    }
+    if (existingStock === false) {
     this.user.saveStock(this.stockObj)
     .subscribe ( (data: any) => {
       console.log("stock data: ", data)
+      this.favorites.push(data.stock)
     })
+    }
+    else {
+      alert("Stock already in favorites!")
+    }
   }
-    getFavorites() {
+  
+  getFavorites() {
     this.user.getFavorites()
     .subscribe ( (data: any) => {
       console.log("favorites: ", data)

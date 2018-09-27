@@ -43,34 +43,13 @@ export class ChartComponent {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
   
-  openValue: string = '';
-  closeValue: string = '';
-  highValue: string = '';
-  lowValue: string = '';
-  volumeValue: string = '';
-  stockName: string = '';
+ 
 
   constructor(private stock: StocksearchService) {
     this.lineChartData = this.stock.lineChartData;
     this.lineChartLabels = this.stock.lineChartLabels;
-    this.openValue  = this.stock.openValue;
-    this.closeValue = this.stock.closeValue;
-    this.highValue = this.stock.highValue;
-    this.lowValue = this.stock.lowValue;
-    this.volumeValue = this.stock.volumeValue;
-    this.stockName = this.stock.stockName;
-  }
+    }
   
-  chartStock() {
-    this.lineChartData = this.stock.lineChartData;
-    this.lineChartLabels = this.stock.lineChartLabels;
-    this.openValue  = this.stock.openValue;
-    this.closeValue = this.stock.closeValue;
-    this.highValue = this.stock.highValue;
-    this.lowValue = this.stock.lowValue;
-    this.volumeValue = this.stock.volumeValue;
-    this.stockName = this.stock.stockName;
-  }
  
  
   // events
