@@ -7,8 +7,10 @@
         <nav class="sidenav">
             Welcome {{name}}! <br> 
             <section class="sidenav-content">
+                <div class="searchbar">
                 <input type='text' placeholder = "search" [(ngModel)] = "stockObj.stock"> <br>
-                <button (click)="getStock(stockObj.stock)" >get stock</button> <br>
+                <button class="search" (click)="getStock(stockObj.stock)" >get stock</button> <br>
+                </div>
                 <button (click)="favoriteStock()" >save as favorite</button>
                 
                 <section class="nav-group collapsible">

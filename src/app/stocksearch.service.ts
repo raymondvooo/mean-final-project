@@ -18,6 +18,7 @@ export class StocksearchService {
   lineChartLabels:Array<any> = [];
   stockObj: any = { };
   stockName: string = "";
+  currentClose: string = "";
 
 
   constructor(private http: HttpClient) { }
@@ -37,7 +38,8 @@ export class StocksearchService {
     this.lineChartData[0] = closingValues;
     this.stockObj = this.dayArray[0];
     this.stockName = this.equity.toUpperCase();
-    
+    this.currentClose = this.dayArray[0]['4. close'];
+
   }
 
 
