@@ -10,8 +10,7 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
   user: any = {};
   loginS: boolean = true;
-  login: boolean = true;
-  register: boolean = false;
+
   
   
   constructor(public userService : UserService, public router: Router) { }
@@ -53,3 +52,4 @@ export class LoginComponent implements OnInit {
 
 
 }
+ 

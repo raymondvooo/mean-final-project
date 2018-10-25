@@ -30,3 +30,8 @@
     background-color: transparent;
     color: #000000;
 }
+p {
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+}

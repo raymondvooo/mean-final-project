@@ -5,9 +5,16 @@
         <section class="title">
             <h3 class="welcome">Welcome to</h3>
             Stock Search
-            <h5 class="hint" *ngIf="login == true">Sign in below {{user.name}}</h5>
+            <h5 class="hint" *ngIf="userService.uLogin === true && userService.id != null">You are already signed in!</h5>
+            <h5 class="hint" *ngIf="userService.uLogin === true && userService.id === null">Sign in below</h5>
+            <p>
+              <br>
+            <p> <button *ngIf="userService.uLogin === true && userService.id != null" class="btn btn-link" (click)= "onLogout()">Logout</button>
+            <p>
+            <button *ngIf="userService.uLogin === true && userService.id != null" class="btn btn-link" (click)="userService.uRegister = true; userService.uLogin = false" >Need an Account?</button>
+            </p>
         </section>
-        <div class="login-group" *ngIf="login == true">
+        <div class="login-group" *ngIf="userService.uLogin === true && userService.id === null">
             <input class="username" type="text" name="input" placeholder="Username" [(ngModel)]="user.email">
             <input class="password" type="password" name="input" placeholder="Password" [(ngModel)]="user.password">
  
@@ -17,11 +24,11 @@
             <button type="submit" class="btn btn-primary" (click)="onLogin()">Login</button>
 
 
-            <button class="btn btn-link" (click)="register = true; login = false" >Need an Account?</button>
+            <button class="btn btn-link" (click)="userService.uRegister = true; userService.uLogin = false" >Need an Account?</button>
         </div>
-        
-        <div class="login-group" *ngIf="register == true">
-          REGISTER
+        <h5 class="hint" *ngIf="userService.uRegister === true">Register below</h5>
+        <div class="login-group" *ngIf="userService.uRegister === true">
+          
             <input class="first name" type="text" name="input" placeholder="First Name" [(ngModel)]="user.firstName">
             <input class="last name" type="text" name="input" placeholder="Last Name" [(ngModel)]="user.lastName">
             <input class="email" type="text" name="input" placeholder="Email" [(ngModel)]="user.email">
@@ -30,7 +37,7 @@
            
             <button type="submit" class="btn btn-primary" (click)="onRegister()">Register</button>
 
-            <button class="btn btn-link" (click)="register = false; login = true" >Go Back</button>
+            <button class="btn btn-link" (click)="userService.uRegister = false; userService.uLogin = true" >Go Back</button>
         </div>
     </form>
 </div>

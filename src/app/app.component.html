@@ -2,9 +2,9 @@
 <header class="header-5">
     <div class="header-nav">
         <a href="http://mean-stack-charlie-2018-raymond-phortonssf.c9users.io:8081/stocks" class="active nav-link nav-text">Stock Search</a>
-        <a href="http://mean-stack-charlie-2018-raymond-phortonssf.c9users.io:8081/login" class="nav-link nav-text">Log In</a>
+                <a *ngIf="user.id != null" href="http://mean-stack-charlie-2018-raymond-phortonssf.c9users.io:8081/login" class="nav-link nav-text" (click)="login(); user.uRegister = true; user.uLogin = false">Create New Account</a>
+        <a *ngIf="user.id === null" href="http://mean-stack-charlie-2018-raymond-phortonssf.c9users.io:8081/login" class="nav-link nav-text">Log In</a>
     </div>
-
 </header>
 <router-outlet></router-outlet>
 <!--<div style="text-align:center">-->

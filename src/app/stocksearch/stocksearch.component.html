@@ -5,7 +5,7 @@
              <app-chart></app-chart>
         </div>
         <nav class="sidenav">
-            Welcome {{name}}! <br> 
+            Welcome {{user.name}}! <br> 
             <section class="sidenav-content">
                 <div class="searchbar">
                 <input type='text' placeholder = "search" [(ngModel)] = "stockObj.stock"> <br>
@@ -20,7 +20,7 @@
 
                     <li let *ngFor = "let fave of favorites"><a class="nav-link" (click) = "getStock(fave)">{{fave}}</a></li>
                     </ul>
-                    <button class="btn btn-link" (click)= "onLogout()">Logout</button>
+                    <button *ngIf="user.id != null" class="btn btn-link" (click)= "onLogout()">Logout</button>
 
                 </section>
              

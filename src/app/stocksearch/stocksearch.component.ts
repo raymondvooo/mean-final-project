@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class StocksearchComponent implements OnInit {
   stockObj: any = {};
-  name: string = "";
   favorites: Array<string> = [];
   
   constructor(private stock: StocksearchService, private user: UserService, private router: Router) { }
@@ -19,8 +18,8 @@ export class StocksearchComponent implements OnInit {
   ngOnInit() {
     this.user.getUser(this.user)
     .subscribe((data: any) => {
-      this.name = data.firstName;
-      console.log(this.name);
+      this.user.name = data.firstName;
+      console.log(this.user.name);
     });
     this.user.getFavorites()
     .subscribe ( (data: any) => {
