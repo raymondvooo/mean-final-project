@@ -9,11 +9,14 @@
             <h5 class="hint" *ngIf="userService.uLogin === true && userService.id === null">Sign in below</h5>
             <p>
               <br>
+              <!-- if user is already signed in, create logout button -->
             <p> <button *ngIf="userService.uLogin === true && userService.id != null" class="btn btn-link" (click)= "onLogout()">Logout</button>
             <p>
+                
             <button *ngIf="userService.uLogin === true && userService.id != null" class="btn btn-link" (click)="userService.uRegister = true; userService.uLogin = false" >Need an Account?</button>
             </p>
         </section>
+        <!-- if user needs to login, display this -->
         <div class="login-group" *ngIf="userService.uLogin === true && userService.id === null">
             <input class="username" type="text" name="input" placeholder="Username" [(ngModel)]="user.email">
             <input class="password" type="password" name="input" placeholder="Password" [(ngModel)]="user.password">
@@ -26,6 +29,8 @@
 
             <button class="btn btn-link" (click)="userService.uRegister = true; userService.uLogin = false" >Need an Account?</button>
         </div>
+        
+        <!-- if user wants to register, display this -->
         <h5 class="hint" *ngIf="userService.uRegister === true">Register below</h5>
         <div class="login-group" *ngIf="userService.uRegister === true">
           

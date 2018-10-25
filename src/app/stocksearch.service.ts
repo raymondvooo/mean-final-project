@@ -27,14 +27,17 @@ export class StocksearchService {
     return this.http.get(this.url+equity+this.api)
   }
   
+  //assigns data so chart component can use and create the chart of the stock
   public chartStock():void {
     this.lineChartData = [];
     let closingValues = {data: new Array(this.dayArray.length)};
     
+    //assigns data for every day available in information pulled from api
     for (let i = 0; i < this.dayArray.length; i++) {
       closingValues.data[this.dayArray.length - 1 - i] = this.dayArray[i]['4. close'];
       this.lineChartLabels[i] = this.dateArray[this.dayArray.length - 1 - i];
     }
+    //values for the line graph
     this.lineChartData[0] = closingValues;
     this.stockObj = this.dayArray[0];
     this.stockName = this.equity.toUpperCase();

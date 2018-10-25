@@ -18,6 +18,7 @@
                     <label for="tabexample1">See Favorites</label>
                     <ul class="nav-list">
 
+                    <!--creates list of favorites -->
                     <li let *ngFor = "let fave of favorites"><a class="nav-link" (click) = "getStock(fave)">{{fave}}</a></li>
                     </ul>
                     <button *ngIf="user.id != null" class="btn btn-link" (click)= "onLogout()">Logout</button>

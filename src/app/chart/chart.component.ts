@@ -14,6 +14,7 @@ export class ChartComponent {
   public lineChartOptions:any = {
     responsive: true 
   };
+  
   public lineChartColors:Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -40,6 +41,7 @@ export class ChartComponent {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
+  
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
   

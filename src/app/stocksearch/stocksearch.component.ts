@@ -14,7 +14,7 @@ export class StocksearchComponent implements OnInit {
   favorites: Array<string> = [];
   
   constructor(private stock: StocksearchService, private user: UserService, private router: Router) { }
-  
+  //gets users favorites on init
   ngOnInit() {
     this.user.getUser(this.user)
     .subscribe((data: any) => {
@@ -33,14 +33,20 @@ export class StocksearchComponent implements OnInit {
       });
       
   }
+  
+  //turns stock from api call into an object
   getStock(stock) {
     this.stock.getData(stock)
     .subscribe ( (data:any) => {
       let dayArray: Array<any> = [];
       let dateArray: Array<any> = [];
+      
       console.log(data);
+      
       this.stock.equity = data[ 'Meta Data']['2. Symbol'];
       console.log('DATA', data['Time Series (Daily)']);
+      
+      //iterates through objects properties and assigns them to object
       for (var prop in data['Time Series (Daily)']) {
       if (data['Time Series (Daily)'].hasOwnProperty(prop)) {
         let innerObj = {};
@@ -59,11 +65,13 @@ export class StocksearchComponent implements OnInit {
   
   favoriteStock() {
     let existingStock: boolean = false;
+    //checks if stock already favorited
     for (var i = 0; i < this.favorites.length; i++) {
       if (this.stockObj.stock === this.favorites[i]) {
         existingStock = true;
       }
     }
+    //if not, save the stock
     if (existingStock === false) {
     this.user.saveStock(this.stockObj)
     .subscribe ( (data: any) => {
